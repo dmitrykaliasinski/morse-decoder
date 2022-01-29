@@ -39,16 +39,17 @@ const MORSE_TABLE = {
 
 function decode(expr) {
   let str = "";
-  for (let i = 0; i < expr.length; i + 10) {
+  for (let i = 0; i < expr.length; i += 10) {
     let letter = expr.slice(i, i + 10);
     if (letter === "**********") {
       str += " ";
     }
     let morse = "";
-    for (let j = 0; j < letter.length; j++) {
+    for (let j = 0; j < 10; j += 2) {
       morseElement = letter.slice(j, j + 2);
       if (morseElement !== "00") {
-        morse = morseElement === "10" ? "." : "-";
+        element = morseElement === "10" ? "." : "-";
+        morse += element;
       }
     }
     str += MORSE_TABLE[morse];
